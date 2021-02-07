@@ -41,7 +41,8 @@
 ;;; so custom won't dump it's stuff here
 (let ((custom (concat user-emacs-directory "custom.el")))
   (setq custom-file custom)
-  (load-file custom))
+  (when (file-exists-p custom)
+    (load-file custom)))
 
 ;;; damn emacs, stop littering my filesystem already
 (setq backup-directory-alist

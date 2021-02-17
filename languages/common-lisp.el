@@ -1,6 +1,10 @@
 (require 'use-package)
 
-(setq common-lisp "sbcl")
+(setq common-lisp
+      (case system-type
+	(darwin "ccl")
+	(windows-nt "ccl")
+	(otherwise "sbcl")))
 
 (use-package slime
   :init

@@ -31,6 +31,8 @@
   (when (or (memq window-system '(mac ns x)) (daemonp))
     (exec-path-from-shell-initialize)))
 
+(use-package magit)
+
 ;; general options
 ;;; for standalone elisp files
 (add-to-list 'load-path (concat user-emacs-directory "lisp/"))

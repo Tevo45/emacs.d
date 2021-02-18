@@ -2,7 +2,7 @@
 
 (setq common-lisp
       (case system-type
-	(darwin "ccl")
+	(darwin "ccl64")
 	(windows-nt "ccl")
 	(otherwise "sbcl")))
 

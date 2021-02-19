@@ -67,6 +67,12 @@
 
 (use-package neotree)
 
+;; os-specific configuration
+(let ((conf (concat user-emacs-directory "/"
+		    (symbol-name system-type) ".el")))
+  (when (file-exists-p conf)
+    (load-file conf)))
+
 ;; language support files
 (mapc #'load-file
       (directory-files (concat user-emacs-directory "/languages")

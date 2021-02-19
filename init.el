@@ -31,6 +31,12 @@
   (when (or (memq window-system '(mac ns x)) (daemonp))
     (exec-path-from-shell-initialize)))
 
+;;; so-long
+(unless (require 'so-long nil :noerror)
+  (use-package so-long))
+(require 'so-long)
+(global-so-long-mode 1)
+
 (use-package magit)
 
 ;; general options

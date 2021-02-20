@@ -74,7 +74,7 @@
 (use-package neotree)
 
 ;; os-specific configuration
-(let ((conf (concat user-emacs-directory "/"
+(let ((conf (concat user-emacs-directory "/os/"
 		    (symbol-name system-type) ".el")))
   (when (file-exists-p conf)
     (load-file conf)))
@@ -84,3 +84,9 @@
       (directory-files (concat user-emacs-directory "/languages")
 		       t
 		       ".el$"))
+
+;; machine-specific configuration
+(let ((conf (concat user-emacs-directory "/cfg/"
+		    (downcase (system-name)) ".el")))
+  (when (file-exists-p conf)
+    (load-file conf)))

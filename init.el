@@ -62,16 +62,14 @@
 (require 'acme-mouse)
 
 ;; fancyness
-(use-package zenburn-theme
+(use-package brutal-theme
   :config
-  (enable-theme 'zenburn))
+  (enable-theme 'brutal))
 
 (use-package dashboard
   :config
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
-
-(use-package neotree)
 
 ;; os-specific configuration
 (let ((conf (concat user-emacs-directory "/os/"

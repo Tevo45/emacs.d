@@ -43,8 +43,11 @@
 ;;; for standalone elisp files
 (add-to-list 'load-path (concat user-emacs-directory "lisp/"))
 
-;;; line numbers
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+;;; line numbers and fill column
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (display-line-numbers-mode)
+	    (display-fill-column-indicator-mode)))
 
 ;;; so custom won't dump it's stuff here
 (let ((custom (concat user-emacs-directory "custom.el")))

@@ -8,4 +8,7 @@
 
 (use-package slime
   :init
-  (setq inferior-lisp-program common-lisp))
+  (setq inferior-lisp-program common-lisp)
+  :hook
+  (lisp-mode . (lambda ()
+		 (setq display-fill-column-indicator-column 100))))

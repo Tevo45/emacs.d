@@ -4,5 +4,5 @@
 
 (use-package fsharp-mode
   :hook eglot
-  :init
-  (setq inferior-fsharp-program "fsharpi"))
+  :custom-face
+  (fsharp-ui-operator-face ((t nil))))

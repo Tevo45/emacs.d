@@ -75,6 +75,9 @@
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
 
+;;; gemini browser(!)
+(use-package elpher)
+
 ;;; os-specific configuration
 (let ((conf (concat user-emacs-directory "/os/"
 		    (symbol-name system-type) ".el")))

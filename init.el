@@ -40,6 +40,9 @@
 ;; magit
 (use-package magit)
 
+;; gemini browser(!)
+(use-package elpher)
+
 ;;; general options
 ;; for standalone elisp files
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
@@ -75,12 +78,16 @@
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
 
-;;; gemini browser(!)
-(use-package elpher)
-
 ;;; os-specific configuration
 (let ((conf (concat user-emacs-directory "/os/"
-		    (symbol-name system-type) ".el")))
+		    (replace-regexp-in-string "/" "-"
+					      (symbol-name system-type))
+		    ".el"))
+      (unix '(aix berkeley-unix cygwin darwin gnu gnu/linux
+	      gnu/kfreebsd hpux usg-unix-v)) ; did i miss any?
+      (unix-conf (concat user-emacs-directory "/os/unix.el")))
+  (when (and (member system-type unix) (file-exists-p unix-conf))
+    (load-file unix-conf))
   (when (file-exists-p conf)
     (load-file conf)))
 

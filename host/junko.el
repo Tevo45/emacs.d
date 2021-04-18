@@ -7,7 +7,8 @@
                face :family family :weight 'normal :height height))
           (face-list))))
 
-(when (display-graphic-p)
+(when (and (display-graphic-p)
+	   nil) ; TODO check for VGA
    (add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
    (add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes)
    (mapc

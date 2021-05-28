@@ -4,6 +4,7 @@
       (case system-type
 	(darwin "ccl64")
 	(windows-nt "ccl")
+	(gnu/linux "cmucl") ; thanks, hoyte
 	(otherwise "sbcl")))
 
 (use-package slime

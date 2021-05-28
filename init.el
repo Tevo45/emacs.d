@@ -1,4 +1,9 @@
 
+;;; utilities
+(defun load-if-exists (file)
+  (when (file-exists-p file)
+    (load-file file)))
+
 ;;; packages 'n stuff
 (require 'package)
 (add-to-list 'package-archives
@@ -43,6 +48,15 @@
 ;; gemini browser(!)
 (use-package elpher)
 
+;; djvu reader
+(use-package djvu)
+
+;; centered windows
+(use-package centered-window)
+
+;; private configuration (i.e. things withg passwords, etc)
+(load-if-exists (concat user-emacs-directory "secret.el"))
+
 ;;; general options
 ;; for standalone elisp files
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
@@ -56,8 +70,7 @@
 ;; so custom won't dump it's stuff here
 (let ((custom (concat user-emacs-directory "custom.el")))
   (setq custom-file custom)
-  (when (file-exists-p custom)
-    (load-file custom)))
+  (load-if-exists custom))
 
 ;; damn emacs, stop littering my filesystem already
 (setq backup-directory-alist
@@ -69,9 +82,12 @@
 (require 'acme-mouse)
 
 ;;; fancyness
-(use-package brutal-theme
+;(use-package brutal-theme
+;  :config
+;  (enable-theme 'brutal))
+(use-package solarized-theme
   :config
-  (enable-theme 'brutal))
+  (load-theme 'solarized-dark t))
 
 (use-package dashboard
   :config
@@ -86,10 +102,9 @@
       (unix '(aix berkeley-unix cygwin darwin gnu gnu/linux
 	      gnu/kfreebsd hpux usg-unix-v)) ; did i miss any?
       (unix-conf (concat user-emacs-directory "/os/unix.el")))
-  (when (and (member system-type unix) (file-exists-p unix-conf))
-    (load-file unix-conf))
-  (when (file-exists-p conf)
-    (load-file conf)))
+  (when (member system-type unix)
+    (load-if-exists unix-conf))
+  (load-if-exists conf))
 
 ;;; language support files
 (mapc #'load-file
@@ -100,5 +115,4 @@
 ;;; machine-specific configuration
 (let ((conf (concat user-emacs-directory "/host/"
 		    (downcase (system-name)) ".el")))
-  (when (file-exists-p conf)
-    (load-file conf)))
+  (load-if-exists conf))

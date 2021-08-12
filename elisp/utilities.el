@@ -16,4 +16,7 @@
 	     (cons user-emacs-directory components)
 	     "/"))
 
+(defun host-name ()
+  (downcase (car (split-string (system-name) "\\."))))
+
 (provide 'utilities)

@@ -1,3 +1,5 @@
+(require 'utilities)
+
 ;; private configuration (i.e. things with passwords, etc)
 (load-if-exists (.emacs.d "secret.el"))
 
@@ -15,4 +17,4 @@
 (load-if-exists
  (.emacs.d
   "host"
-  (concat (downcase (system-name)) ".el")))
+  (concat (downcase (host-name)) ".el")))

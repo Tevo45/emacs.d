@@ -1,15 +1,16 @@
 (require 'use-package)
 
-(setq common-lisp
+(setf common-lisp
       (case system-type
 	(darwin "ccl64")
 	(windows-nt "ccl")
 	(gnu/linux "cmucl") ; thanks, hoyte
-	(otherwise "sbcl")))
+	(berkeley-unix "sbcl")
+	(otherwise "lisp")))
 
 (use-package slime
   :init
-  (setq inferior-lisp-program common-lisp)
+  (setf inferior-lisp-program common-lisp)
   :hook
   (lisp-mode . (lambda ()
-		 (setq display-fill-column-indicator-column 100))))
+		 (setf display-fill-column-indicator-column 100))))
